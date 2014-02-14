@@ -2,6 +2,10 @@
 
 in vec4 colorOut;
 in vec2 texCoord;
+in vec3	viewSpacePosition;
+in vec3	viewSpaceNormal;
+in vec3	viewSpaceLightPosition;
+
 out vec4 fragmentColor;
 
 uniform vec3 lightPosition;
