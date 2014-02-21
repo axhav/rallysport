@@ -63,6 +63,7 @@
     <Compile Include="Entity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,6 +88,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IniFileParser\INIFileParser.csproj">
+      <Project>{5e46dcf4-c473-4171-9f9b-f3910b5ec407}</Project>
+      <Name>INIFileParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Meshomatic\Meshomatic\Meshomatic.csproj">
       <Project>{d52f55a8-08e5-488e-ad0f-bf49b1f29a5f}</Project>
       <Name>Meshomatic</Name>
