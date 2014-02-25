@@ -12,7 +12,9 @@ namespace RallysportGame
     enum Settings : byte
     {
         WINDOW_HEIGHT,
-        WINDOW_WIDTH
+        WINDOW_WIDTH,
+        TEST,
+        FTEST
     }
 
     
@@ -22,6 +24,7 @@ namespace RallysportGame
 
         static Dictionary<Settings, Int32> intSettings;
         static Dictionary<Settings, float> floatSettings;
+        static Dictionary<Settings, bool> boolSettings;
 
 
         //Loads settings from the ini file specified by path.
@@ -29,6 +32,7 @@ namespace RallysportGame
         {
             intSettings = new Dictionary<Settings, Int32>();
             floatSettings = new Dictionary<Settings, float>();
+            boolSettings = new Dictionary<Settings, bool>();
             IniData data = new FileIniDataParser().ReadFile(path);
             foreach(SectionData sd in data.Sections){
                 foreach(KeyData k in sd.Keys){
@@ -37,8 +41,10 @@ namespace RallysportGame
                         //Compare kName and eName
                         if (kName.Equals(Enum.GetName(typeof(Settings),eValue)))
                         {
-                            if (k.Value.Contains("."))  //This is a float
-                                floatSettings.Add(eValue, float.Parse(k.Value));
+                            if (k.Value.Equals("true") || k.Value.Equals("false"))
+                                boolSettings.Add(eValue, bool.Parse(k.Value));
+                            else if (k.Value.Contains("."))  //This is a float
+                                floatSettings.Add(eValue, float.Parse(k.Value, System.Globalization.CultureInfo.InvariantCulture.NumberFormat));
                             else
                                 intSettings.Add(eValue, Int32.Parse(k.Value));
                         }
